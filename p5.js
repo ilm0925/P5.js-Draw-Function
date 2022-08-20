@@ -8,9 +8,6 @@ function degreeToRad(degree) {
     return degree * (Math.PI / 180);
 }
 
-function CosFunc(X) {
-    return Math.cos(X) * 200; // 함수(Y값)
-}
 function DrawLine(p, PX, PY, X, Y) {
     p.line(PX, PY, X, Y);
     p.stroke(500);
@@ -43,6 +40,25 @@ function LinerFunction(p) {
     DrawLine(p, X - AddValue, PY, X, Y);
 }
 
+function CosFunction(p) {
+    p.translate(windowWidth / 2, windowHeight / 2);
+    coordinate(p);
+    X += AddValue;
+    PY = Y;
+    Y = -Math.cos(degreeToRad(X)) * A_value;
+    DrawLine(p, X - AddValue, PY, X, Y);
+}
+
+function SinFunction(p) {
+    p.translate(windowWidth / 2, windowHeight / 2);
+    coordinate(p);
+    X += AddValue;
+    PY = Y;
+    Y = -Math.sin(degreeToRad(X)) * A_value;
+    console.log(Y);
+    DrawLine(p, X - AddValue, PY, X, Y);
+}
+
 let quadratic_Function = function (p) {
     p.setup = () => {
         p.createCanvas(windowWidth, windowHeight);
@@ -71,17 +87,33 @@ let Liner_Function = function (p) {
     };
 };
 
-// 이차
-document
-    .querySelector("body > div.btn-box.grid > div:nth-child(2) > button")
-    .addEventListener("click", () => {
-        setTimeout(() => {
-            window.scroll(0, document.body.scrollHeight);
-        }, 1000);
-        speed = Number(document.querySelector("#speed").value);
-        A_value = 0.01 * Number(document.querySelector("#A-value").value);
-        new p5(quadratic_Function, "container");
-    });
+let Sin_Function = function (p) {
+    p.setup = () => {
+        p.createCanvas(windowWidth, windowHeight);
+        // p.background("black");
+        AddValue = speed;
+        A = A_value;
+        X = -(windowWidth / 2) - AddValue;
+        Y = 0;
+        p.draw = () => {
+            SinFunction(p);
+        };
+    };
+};
+
+let Cos_Function = function (p) {
+    p.setup = () => {
+        p.createCanvas(windowWidth, windowHeight);
+        // p.background("black");
+        AddValue = speed;
+        A = A_value;
+        X = -(windowWidth / 2) - AddValue;
+        Y = 0;
+        p.draw = () => {
+            CosFunction(p);
+        };
+    };
+};
 
 // 일차
 document
@@ -89,11 +121,45 @@ document
     .addEventListener("click", () => {
         setTimeout(() => {
             window.scroll(0, document.body.scrollHeight);
-        }, 1000);
+        }, 100);
         speed = Number(document.querySelector("#speed").value);
         A_value = Number(document.querySelector("#A-value").value);
-        B_value = Number(document.querySelector("#B-value").value)*10;
+        B_value = Number(document.querySelector("#B-value").value) * 10;
         new p5(Liner_Function, "container");
+    });
+// 이차
+document
+    .querySelector("body > div.btn-box.grid > div:nth-child(2) > button")
+    .addEventListener("click", () => {
+        setTimeout(() => {
+            window.scroll(0, document.body.scrollHeight);
+        }, 100);
+        speed = Number(document.querySelector("#speed").value);
+        A_value = 0.01 * Number(document.querySelector("#A-value").value);
+        new p5(quadratic_Function, "container");
+    });
+//Sin함수
+document
+    .querySelector("body > div.btn-box.grid > div:nth-child(3) > button")
+    .addEventListener("click", () => {
+        setTimeout(() => {
+            window.scroll(0, document.body.scrollHeight);
+        }, 100);
+        speed = Number(document.querySelector("#speed").value);
+        A_value = Number(document.querySelector("#A-value").value) * 100;
+        new p5(Sin_Function, "container");
+    });
+
+//Cos함수
+document
+    .querySelector("body > div.btn-box.grid > div:nth-child(4) > button")
+    .addEventListener("click", () => {
+        setTimeout(() => {
+            window.scroll(0, document.body.scrollHeight);
+        }, 100);
+        speed = Number(document.querySelector("#speed").value);
+        A_value = Number(document.querySelector("#A-value").value) * 100;
+        new p5(Cos_Function, "container");
     });
 
 //다시하기
