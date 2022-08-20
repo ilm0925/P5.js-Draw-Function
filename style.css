@@ -1,3 +1,32 @@
+body {
+    padding: 0;
+    margin: 0;
+    background-color: #060419;
+    -ms-overflow-style: none;
+}
+::-webkit-scrollbar {
+    display: none;
+}
 #container {
-    margin-top: 100px;
+    -ms-overflow-style: none;
+
+    margin-top: auto;
+}
+
+.btn-box {
+    display: flex;
+    justify-content: center;
+}
+
+.btn-box > * {
+    margin: 30px;
+    padding: 30px;
+    border-radius: 20px;
+    font-size: 20px;
+    font-weight: bold;
+    padding-top: 20px;
+}
+
+#container {
+    background-color: #060419;
 }
