@@ -10,19 +10,22 @@ function degreeToRad(degree) {
 }
 
 function DrawLine(p, PX, PY, X, Y) {
-    p.line(PX, PY, X, Y);
     p.stroke(500);
+    p.line(PX, PY, X, Y);
 }
-function DrawCircle(p, X, Y) {
-    p.fill("red");
-    p.circle(X, Y, 10);
+function DrawCircle(p, PX, PY, X, Y) {
+    // p.fill(p.color(255, 204, 0));
+    p.stroke("red");
+    p.line(PX, PY, X, Y);
+    p.stroke(0);
 }
 function coordinate(p) {
-    p.fill(239, 168, 68);
+    p.stroke(255);
+    p.strokeWeight(1);
     p.line(windowWidth / 2, 0, -windowWidth / 2, 0);
     p.line(0, windowHeight / 2, 0, -windowHeight / 2);
-    p.stroke(400);
-    p.fill(239, 168, 68);
+    p.stroke(0);
+    // p.fill(239, 168, 68);
 }
 
 function quadraticFunction(p) {
@@ -30,9 +33,12 @@ function quadraticFunction(p) {
     coordinate(p);
     X += AddValue;
     PY = Y;
-    Y = -A * (X - B_value) ** 2 - C_value; //a(x-b) + c 근데 음수가 양수라서 + 대신 -
+    PY2 = RedY;
+    RedY = -(A * (X - B_value) ** 2) - C_value;
+    Y = -A * X ** 2; //a(x-b) + c 근데 음수가 양수라서 + 대신 -
+    p.strokeWeight(2);
+    DrawCircle(p, X - AddValue, PY2, X, RedY);
     DrawLine(p, X - AddValue, PY, X, Y);
-    DrawCircle(p, X, -(A * X ** 2));
 }
 
 function LinerFunction(p) {
@@ -40,9 +46,12 @@ function LinerFunction(p) {
     coordinate(p);
     X += AddValue;
     PY = Y;
-    Y = -(A * X) - B_value;
+    PY2 = RedY;
+    RedY = -(A * X) - B_value;
+    Y = -(A * X);
+    p.strokeWeight(3);
+    DrawCircle(p, X - AddValue, PY2, X, RedY);
     DrawLine(p, X - AddValue, PY, X, Y);
-    DrawCircle(p, X, -(A * X));
 }
 
 function CosFunction(p) {
@@ -50,9 +59,12 @@ function CosFunction(p) {
     coordinate(p);
     X += AddValue;
     PY = Y;
-    Y = -(Math.cos(degreeToRad(X - B_value)) * A_value) - C_value;
+    PY2 = RedY;
+    RedY = -(Math.cos(degreeToRad(X - B_value)) * A_value) - C_value;
+    Y = -(Math.cos(degreeToRad(X)) * A_value);
+    p.strokeWeight(2);
+    DrawCircle(p, X - AddValue, PY2, X, RedY);
     DrawLine(p, X - AddValue, PY, X, Y);
-    DrawCircle(p, X, -Math.cos(degreeToRad(X)) * A_value);
 }
 
 function SinFunction(p) {
@@ -60,9 +72,12 @@ function SinFunction(p) {
     coordinate(p);
     X += AddValue;
     PY = Y;
-    Y = -(Math.sin(degreeToRad(X - B_value)) * A_value) - C_value;
+    PY2 = RedY;
+    RedY = -(Math.sin(degreeToRad(X - B_value)) * A_value) - C_value;
+    Y = -(Math.sin(degreeToRad(X)) * A_value);
+    p.strokeWeight(2);
+    DrawCircle(p, X - AddValue, PY2, X, RedY);
     DrawLine(p, X - AddValue, PY, X, Y);
-    DrawCircle(p, X, -(Math.sin(degreeToRad(X)) * A_value));
 }
 
 let quadratic_Function = function (p) {
@@ -73,6 +88,7 @@ let quadratic_Function = function (p) {
         A = A_value;
         X = -(windowWidth / 2) - AddValue;
         Y = 0;
+        RedY = 0;
         p.draw = () => {
             quadraticFunction(p);
         };
@@ -87,6 +103,7 @@ let Liner_Function = function (p) {
         A = A_value;
         X = -(windowWidth / 2) - AddValue;
         Y = 0;
+        RedY = 0;
         p.draw = () => {
             LinerFunction(p);
         };
@@ -101,6 +118,7 @@ let Sin_Function = function (p) {
         A = A_value;
         X = -(windowWidth / 2) - AddValue;
         Y = 0;
+        RedY = 0;
         p.draw = () => {
             SinFunction(p);
         };
@@ -115,6 +133,7 @@ let Cos_Function = function (p) {
         A = A_value;
         X = -(windowWidth / 2) - AddValue;
         Y = 0;
+        RedY = 0;
         p.draw = () => {
             CosFunction(p);
         };
@@ -143,7 +162,7 @@ document
         speed = Number(document.querySelector("#speed").value);
         A_value = 0.01 * Number(document.querySelector("#A-value").value);
         B_value = Number(document.querySelector("#B-value").value) * 10;
-        C_value = Number(document.querySelector("#B-value").value) * 10;
+        C_value = Number(document.querySelector("#C-value").value) * 10;
         new p5(quadratic_Function, "container");
     });
 //Sin함수
@@ -155,8 +174,8 @@ document
         }, 100);
         speed = Number(document.querySelector("#speed").value);
         A_value = Number(document.querySelector("#A-value").value) * 100;
-        B_value = Number(document.querySelector("#B-value").value) * 100;
-        C_value = Number(document.querySelector("#C-value").value) * 100;
+        B_value = Number(document.querySelector("#B-value").value) * 10;
+        C_value = Number(document.querySelector("#C-value").value) * 10;
 
         new p5(Sin_Function, "container");
     });
@@ -170,8 +189,8 @@ document
         }, 100);
         speed = Number(document.querySelector("#speed").value);
         A_value = Number(document.querySelector("#A-value").value) * 100;
-        B_value = Number(document.querySelector("#B-value").value) * 100;
-        C_value = Number(document.querySelector("#C-value").value) * 100;
+        B_value = Number(document.querySelector("#B-value").value) * 10;
+        C_value = Number(document.querySelector("#C-value").value) * 10;
 
         new p5(Cos_Function, "container");
     });
