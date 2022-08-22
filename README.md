@@ -1,5 +1,6 @@
 # 함수 그려주기(https://draw-function.netlify.app/)
-<img width="1437" alt="image" src="https://user-images.githubusercontent.com/86773756/185812542-8fdbfc21-c895-43dd-a0f6-ce9b368400ca.png">
+<img width="1440" alt="image" src="https://user-images.githubusercontent.com/86773756/185877387-6a527d79-75fa-426c-9506-8c7686541b78.png">
+
 
 
 ## 일차함수
