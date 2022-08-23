@@ -10,7 +10,9 @@
 ![이차함수](https://user-images.githubusercontent.com/86773756/185812508-b2394e97-eaba-444a-9878-17e4505146a1.gif)
 
 ## Sin함수
-![Sine함수](https://user-images.githubusercontent.com/86773756/185812507-bfc18b03-d55e-4ec1-9168-bd8d9a621b45.gif)
+![Sin](https://user-images.githubusercontent.com/86773756/186137390-5ed354f9-0675-483f-bee4-ef8bbd6cbbaf.gif)
+
 
 ## Cos함수
-![cos함수](https://user-images.githubusercontent.com/86773756/185812499-9bff7eaa-0a53-4aeb-9975-ca869071818d.gif)
+![cos](https://user-images.githubusercontent.com/86773756/186137427-ec4af7db-467c-49f0-9c27-8a87509d97a5.gif)
+
