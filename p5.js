@@ -70,7 +70,7 @@ function CosFunction(p) {
     X += AddValue;
     PY = Y;
     PY2 = RedY;
-    RedY = -(Math.cos(degreeToRad(X - B_value)) * A_value) - C_value;
+    RedY = -(Math.cos(degreeToRad(X + B_value)) * A_value) - C_value;
     Y = -(Math.cos(degreeToRad(X)) * A_value);
     p.strokeWeight(2);
     DrawCircle(p, X - AddValue, PY2, X, RedY);
@@ -88,7 +88,7 @@ function SinFunction(p) {
     X += AddValue;
     PY = Y;
     PY2 = RedY;
-    RedY = -(Math.sin(degreeToRad(X - B_value)) * A_value) - C_value;
+    RedY = -(Math.sin(degreeToRad(X + B_value)) * A_value) - C_value;
     Y = -(Math.sin(degreeToRad(X)) * A_value);
     p.strokeWeight(2);
     DrawCircle(p, X - AddValue, PY2, X, RedY);
