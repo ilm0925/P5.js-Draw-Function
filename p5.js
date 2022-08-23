@@ -39,6 +39,11 @@ function quadraticFunction(p) {
     p.strokeWeight(2);
     DrawCircle(p, X - AddValue, PY2, X, RedY);
     DrawLine(p, X - AddValue, PY, X, Y);
+    if (X > windowWidth / 2) {
+        console.log("이차함수 종료");
+        p.noLoop();
+        return;
+    }
 }
 
 function LinerFunction(p) {
@@ -52,6 +57,11 @@ function LinerFunction(p) {
     p.strokeWeight(3);
     DrawCircle(p, X - AddValue, PY2, X, RedY);
     DrawLine(p, X - AddValue, PY, X, Y);
+    if (X > windowWidth / 2) {
+        console.log("일차함수 종료");
+        p.noLoop();
+        return;
+    }
 }
 
 function CosFunction(p) {
@@ -65,6 +75,11 @@ function CosFunction(p) {
     p.strokeWeight(2);
     DrawCircle(p, X - AddValue, PY2, X, RedY);
     DrawLine(p, X - AddValue, PY, X, Y);
+    if (X > windowWidth / 2) {
+        console.log("Cos함수 종료");
+        p.noLoop();
+        return;
+    }
 }
 
 function SinFunction(p) {
@@ -78,6 +93,11 @@ function SinFunction(p) {
     p.strokeWeight(2);
     DrawCircle(p, X - AddValue, PY2, X, RedY);
     DrawLine(p, X - AddValue, PY, X, Y);
+    if (X > windowWidth / 2) {
+        console.log("Sin함수 종료");
+        p.noLoop();
+        return;
+    }
 }
 
 let quadratic_Function = function (p) {
@@ -128,7 +148,6 @@ let Sin_Function = function (p) {
 let Cos_Function = function (p) {
     p.setup = () => {
         p.createCanvas(windowWidth, windowHeight);
-        // p.background("black");
         AddValue = speed;
         A = A_value;
         X = -(windowWidth / 2) - AddValue;
