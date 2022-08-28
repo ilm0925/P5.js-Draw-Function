@@ -1,6 +1,5 @@
 export default class lib {
-    constructor(p) {
-        this.p = p;
+    constructor() {
     }
 
     coordinate(windowWidth, windowHeight) {
@@ -24,6 +23,12 @@ export default class lib {
         this.p.line(PX, PY, X, Y);
         // this.p.stroke(0);
     }
+
+    Draw(){
+        this.p.strokeWeight(2)
+        this.DrawCircle(this.X - this.speed, this.PY2, this.X, this.RedY);
+        this.DrawLine(this.X - this.speed,this.PY, this.X, this.Y);
+    }
     setXY(CaculatedY,Caculated_REDY){
         this.X += this.speed;
         this.PY = this.Y;
@@ -32,8 +37,18 @@ export default class lib {
         this.Y = CaculatedY
     }
 
+
+
     SetBackground(){
         this.p.translate(this.windowWidth / 2, this.windowHeight / 2)
         this.coordinate(this.windowWidth, this.windowHeight);
+    }
+
+    ExitPoint(name){
+        if (this.X > this.windowWidth / 2) {
+            console.log(`${name} 종료`);
+            p.noLoop();
+            return;
+        }
     }
 }
