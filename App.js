@@ -20,9 +20,9 @@ export default class App {
 
     Liner_Function = function (p) {
         p.setup = () => {
-            speed = Number(document.querySelector("#speed").value);
-            A = Number(document.querySelector("#A-value").value);
-            B = Number(document.querySelector("#B-value").value) * 10;
+            let speed = Number(document.querySelector("#speed").value);
+            let A = Number(document.querySelector("#A-value").value);
+            let B = Number(document.querySelector("#B-value").value) * 10;
             new DrawFuncntion(p, speed, A, B, 0).LinerFunction();
         };
     };
