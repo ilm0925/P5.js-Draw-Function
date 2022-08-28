@@ -1,117 +1,24 @@
-speed = null;
-A_value = null;
-B_value = null;
-C_value = null;
-windowWidth = window.innerWidth;
-windowHeight = window.innerHeight;
+import DrawFuncntion from "./DrawFunction.js";
 
-function degreeToRad(degree) {
-    return degree * (Math.PI / 180);
-}
+let speed = null;
+let A_value = null;
+let B_value = null;
+let C_value = null;
+let windowWidth = window.innerWidth;
+let windowHeight = window.innerHeight;
 
-function DrawLine(p, PX, PY, X, Y) {
-    p.stroke(500);
-    p.line(PX, PY, X, Y);
-}
-function DrawCircle(p, PX, PY, X, Y) {
-    // p.fill(p.color(255, 204, 0));
-    p.stroke("red");
-    p.line(PX, PY, X, Y);
-    p.stroke(0);
-}
-function coordinate(p) {
-    p.stroke(255);
-    p.strokeWeight(1);
-    p.line(windowWidth / 2, 0, -windowWidth / 2, 0);
-    p.line(0, windowHeight / 2, 0, -windowHeight / 2);
-    p.stroke(0);
-    // p.fill(239, 168, 68);
-}
-
-function quadraticFunction(p) {
-    p.translate(windowWidth / 2, windowHeight / 2);
-    coordinate(p);
-    X += AddValue;
-    PY = Y;
-    PY2 = RedY;
-    RedY = -(A * (X - B_value) ** 2) - C_value;
-    Y = -A * X ** 2; //a(x-b) + c 근데 음수가 양수라서 + 대신 -
-    p.strokeWeight(2);
-    DrawCircle(p, X - AddValue, PY2, X, RedY);
-    DrawLine(p, X - AddValue, PY, X, Y);
-    if (X > windowWidth / 2) {
-        console.log("이차함수 종료");
-        p.noLoop();
-        return;
-    }
-}
-
-function LinerFunction(p) {
-    p.translate(windowWidth / 2, windowHeight / 2);
-    coordinate(p);
-    X += AddValue;
-    PY = Y;
-    PY2 = RedY;
-    RedY = -(A * X) - B_value;
-    Y = -(A * X);
-    p.strokeWeight(3);
-    DrawCircle(p, X - AddValue, PY2, X, RedY);
-    DrawLine(p, X - AddValue, PY, X, Y);
-    if (X > windowWidth / 2) {
-        console.log("일차함수 종료");
-        p.noLoop();
-        return;
-    }
-}
-
-function CosFunction(p) {
-    p.translate(windowWidth / 2, windowHeight / 2);
-    coordinate(p);
-    X += AddValue;
-    PY = Y;
-    PY2 = RedY;
-    RedY = -(Math.cos(degreeToRad(X + B_value)) * A_value) - C_value;
-    Y = -(Math.cos(degreeToRad(X)) * A_value);
-    p.strokeWeight(2);
-    DrawCircle(p, X - AddValue, PY2, X, RedY);
-    DrawLine(p, X - AddValue, PY, X, Y);
-    if (X > windowWidth / 2) {
-        console.log("Cos함수 종료");
-        p.noLoop();
-        return;
-    }
-}
-
-function SinFunction(p) {
-    p.translate(windowWidth / 2, windowHeight / 2);
-    coordinate(p);
-    X += AddValue;
-    PY = Y;
-    PY2 = RedY;
-    RedY = -(Math.sin(degreeToRad(X + B_value)) * A_value) - C_value;
-    Y = -(Math.sin(degreeToRad(X)) * A_value);
-    p.strokeWeight(2);
-    DrawCircle(p, X - AddValue, PY2, X, RedY);
-    DrawLine(p, X - AddValue, PY, X, Y);
-    if (X > windowWidth / 2) {
-        console.log("Sin함수 종료");
-        p.noLoop();
-        return;
-    }
-}
 
 let quadratic_Function = function (p) {
     p.setup = () => {
-        p.createCanvas(windowWidth, windowHeight);
         // p.background("black");
-        AddValue = speed;
-        A = A_value;
-        X = -(windowWidth / 2) - AddValue;
-        Y = 0;
-        RedY = 0;
-        p.draw = () => {
-            quadraticFunction(p);
-        };
+        let AddValue = Number(document.querySelector("#speed").value);
+        let A = 0.01 * Number(document.querySelector("#A-value").value);
+        let B = Number(document.querySelector("#B-value").value) * 10;
+        let C = Number(document.querySelector("#C-value").value) * 10;
+        let X = -(windowWidth / 2) - AddValue;
+        let Y = 0;
+        let RedY = 0;
+        new DrawFuncntion(p,AddValue,A,B,C).quadraticFunction()
     };
 };
 
