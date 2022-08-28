@@ -22,6 +22,18 @@ export default class lib {
         console.log(PX, PY);
         this.p.stroke("red");
         this.p.line(PX, PY, X, Y);
-        this.p.stroke(0);
+        // this.p.stroke(0);
+    }
+    setXY(CaculatedY,Caculated_REDY){
+        this.X += this.speed;
+        this.PY = this.Y;
+        this.PY2 = this.RedY;
+        this.RedY = Caculated_REDY
+        this.Y = CaculatedY
+    }
+
+    SetBackground(){
+        this.p.translate(this.windowWidth / 2, this.windowHeight / 2)
+        this.coordinate(this.windowWidth, this.windowHeight);
     }
 }

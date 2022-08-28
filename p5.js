@@ -1,24 +1,13 @@
 import DrawFuncntion from "./DrawFunction.js";
 
-let speed = null;
-let A_value = null;
-let B_value = null;
-let C_value = null;
-let windowWidth = window.innerWidth;
-let windowHeight = window.innerHeight;
-
 
 let quadratic_Function = function (p) {
     p.setup = () => {
-        // p.background("black");
-        let AddValue = Number(document.querySelector("#speed").value);
+        let speed = Number(document.querySelector("#speed").value);
         let A = 0.01 * Number(document.querySelector("#A-value").value);
         let B = Number(document.querySelector("#B-value").value) * 10;
         let C = Number(document.querySelector("#C-value").value) * 10;
-        let X = -(windowWidth / 2) - AddValue;
-        let Y = 0;
-        let RedY = 0;
-        new DrawFuncntion(p,AddValue,A,B,C).quadraticFunction()
+        new DrawFuncntion(p,speed,A,B,C).quadraticFunction()
     };
 };
 
@@ -54,15 +43,13 @@ let Sin_Function = function (p) {
 
 let Cos_Function = function (p) {
     p.setup = () => {
-        p.createCanvas(windowWidth, windowHeight);
-        AddValue = speed;
-        A = A_value;
-        X = -(windowWidth / 2) - AddValue;
-        Y = 0;
-        RedY = 0;
-        p.draw = () => {
-            CosFunction(p);
-        };
+        // p.createCanvas(windowWidth, windowHeight);
+       let speed = Number(document.querySelector("#speed").value);
+       let A = Number(document.querySelector("#A-value").value) * 100;
+       let B = Number(document.querySelector("#B-value").value) * 10;
+       let C = Number(document.querySelector("#C-value").value) * 10;
+
+        p.draw = () => new DrawFuncntion(p,speed,A,B,C).CosFunction()
     };
 };
 
@@ -81,10 +68,6 @@ document.querySelectorAll("button")[1].addEventListener("click", () => {
     setTimeout(() => {
         window.scroll(0, document.body.scrollHeight);
     }, 100);
-    speed = Number(document.querySelector("#speed").value);
-    A_value = 0.01 * Number(document.querySelector("#A-value").value);
-    B_value = Number(document.querySelector("#B-value").value) * 10;
-    C_value = Number(document.querySelector("#C-value").value) * 10;
     new p5(quadratic_Function, "container");
 });
 //Sin함수
@@ -105,11 +88,6 @@ document.querySelectorAll("button")[3].addEventListener("click", () => {
     setTimeout(() => {
         window.scroll(0, document.body.scrollHeight);
     }, 100);
-    speed = Number(document.querySelector("#speed").value);
-    A_value = Number(document.querySelector("#A-value").value) * 100;
-    B_value = Number(document.querySelector("#B-value").value) * 10;
-    C_value = Number(document.querySelector("#C-value").value) * 10;
-
     new p5(Cos_Function, "container");
 });
 
